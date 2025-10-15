@@ -212,18 +212,17 @@
 <script>
 
 
-    const MODELS_TO_TRY = [
-        'llama-3.1-8b-instant',
-        'llama3-8b-8192',
-        'gemma2-9b-it',
-        'mistral-saba-24b',
-        'llama3-70b-8192',
-        'meta-llama/llama-4-maverick-17b-128e-instruct',
-        'meta-llama/llama-4-scout-17b-16e-instruct',
-        'meta-llama/llama-guard-4-12b', 
-        'llama-guard-3-8b',
-        'meta-llama/llama-prompt-guard-2-22m',
-        'meta-llama/llama-prompt-guard-2-86m'
+    const ALL_GROQ_MODELS = [
+      	‘qwen/qwen3-32b’,
+    	‘llama-3.1-8b-instant’,
+    	‘meta-llama/llama-4-maverick-17b-128e-instruct’,
+    	‘meta-llama/llama-4-scout-17b-16e-instruct’,
+    	‘meta-llama/llama-guard-4-12b’,
+    	‘meta-llama/llama-prompt-guard-2-22m’,
+    	‘meta-llama/llama-prompt-guard-2-86m’,
+    	‘moonshotai/kimi-k2-instruct-0905’,
+    	‘openai/gpt-oss-120b’,
+    	‘openai/gpt-oss-20b’
     ];
     
     const FORBIDDEN_WORDS_COMPREHENSIVE = [
@@ -423,10 +422,10 @@
 
 
    const apiCall = async (prompt, modelIndex = 0, customTemperature = 1.9, retryCount = 0) => {
-  if (modelIndex >= MODELS_TO_TRY.length) {
+  if (modelIndex >= ALL_GROQ_MODELS.length) {
     throw new Error('All available models failed to process the request.');
   }
-  const currentModel = MODELS_TO_TRY[modelIndex];
+  const currentModel = ALL_GROQ_MODELS[modelIndex];
   try {
     const response = await fetch('/api/proxy', {
       method: 'POST',
